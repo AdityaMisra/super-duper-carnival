@@ -4,24 +4,24 @@ import json
 class FileIO:
 
     @staticmethod
-    def read() -> list:
+    def read(file_path) -> list:
         """
 
         :rtype: object
         """
         customer_details = []
 
-        with open('../resources/customer.txt', 'r') as reader:
+        with open(file_path, 'r') as reader:
             for line in reader:
                 customer_details.append(json.loads(line))
 
         return customer_details
 
     @staticmethod
-    def write(data) -> None:
+    def write(file_path, data) -> None:
         """
 
         :rtype: None
         """
-        with open('../resources/output.txt', 'w') as writer:
+        with open(file_path, 'w') as writer:
             writer.write('\n'.join(data))
