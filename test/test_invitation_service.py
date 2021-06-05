@@ -7,4 +7,6 @@ class TestInvitationService:
 
     def test_get_customer_details(self):
         pass
-        # assert isinstance(InvitationService.get_customer_details(), list)
+
+    def test_get_customers_within_radius(self):
+        assert isinstance(InvitationService._get_customers_within_radius(), list)

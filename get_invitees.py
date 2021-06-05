@@ -21,5 +21,5 @@ if args.r > 12742 or 0 >= args.r:
     raise ValueError("Invalid value for the radius - " + str(args.r) + " km")
 
 invitation_service = InvitationService(args.i, args.o)
-invitation_service.find_invitees_within_radius(args.r)
+invitation_service.find_customers_within_radius(args.r)
 print("Please check the output in " + args.o + " file.")

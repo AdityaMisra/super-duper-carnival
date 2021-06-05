@@ -18,7 +18,7 @@ class InvitationService:
         self.input_file_path = input_file_path
         self.output_file_path = output_file_path
 
-    def find_invitees_within_radius(self, range_radius: float = 100.0) -> None:
+    def find_customers_within_radius(self, range_radius: float = 100.0) -> None:
         """
         This method parses through the input file of customers and writes the details of valid customers in the output file.
         Valid customers are those whose home location is within the range_radius of the Dublin office location.
@@ -27,6 +27,23 @@ class InvitationService:
         """
 
         customer_details = self.get_customer_details()
+
+        nearest_customers = self._get_customers_within_radius(customer_details, range_radius)
+
+        # converting user_id into string & joining values of tuple to form a string
+        nearest_customers = map(lambda x: ", ".join(map(str, x)), nearest_customers)
+
+        self.write_to_output_file(nearest_customers)
+
+        return None
+
+    def _get_customers_within_radius(self, customer_details: List[CustomerDetails], range_radius: float) -> list:
+        """
+        Get valid customers whose home location is within the range_radius of the Dublin office location.
+        :type range_radius: float
+        :type customer_details: List[CustomerDetails]
+        :rtype: list: valid list of customers
+        """
 
         nearest_customers = []
         for customer in customer_details:
@@ -40,12 +57,7 @@ class InvitationService:
 
         nearest_customers.sort(key=lambda x: x[0])
 
-        # converting user_id into string & joining values of tuple to form a string
-        nearest_customers = map(lambda x: ", ".join(map(str, x)), nearest_customers)
-
-        self.write_to_output_file(nearest_customers)
-
-        return None
+        return nearest_customers
 
     def write_to_output_file(self, nearest_customers: Iterable[str]) -> None:
         """

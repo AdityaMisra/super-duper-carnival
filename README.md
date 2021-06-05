@@ -53,7 +53,7 @@ python get_invitees.py -r 100 -i resources/customer.txt -o resources/output.txt
 from service.invitation_service import InvitationService
 
 invitation_service = InvitationService("resources/customer.txt", "resources/output.txt")
-invitation_service.find_invitees_within_radius()
+invitation_service.find_customers_within_radius()
 
 ```
 
