@@ -6,8 +6,10 @@ class DistanceCalculator:
     @staticmethod
     def compute_distance(origin: tuple, destination: tuple) -> float:
         """
-
-        :rtype: object
+        This method computes the distance between a pair of lat/long using the Great-circle distance formula
+        :param origin: tuple: lat & long
+        :param destination: tuple: lat & long
+        :rtype: float: distance between the origin & destination in kms
         """
 
         lat_origin, lon_origin = origin
