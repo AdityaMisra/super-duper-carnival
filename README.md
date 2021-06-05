@@ -19,8 +19,8 @@ pip install .
 
 #### Let's say you want to install a package named foo. Then you do,
 ```
-$ git clone https://github.com/user/foo  
-$ cd foo
+$ git clone https://github.com/AdityaMisra/super-duper-carnival.git  
+$ cd super-duper-carnival
 $ python setup.py install
 ```
 
