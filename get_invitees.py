@@ -5,7 +5,7 @@ from service.invitation_service import InvitationService
 parser = argparse.ArgumentParser(description='This program returns a list of customers present with in a radius range')
 
 parser.add_argument("-r", default=100.0,
-                    help="Radius within which we want to invite customers. Default value - 100.0 km", type=float)
+                    help="Radius within which we want to invite customers in kms. Default value - 100.0", type=float)
 
 parser.add_argument("-i", default="resources/customer.txt",
                     help="File for reading the input. Default value - resources/customer.txt",
