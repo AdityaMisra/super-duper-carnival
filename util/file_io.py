@@ -11,11 +11,18 @@ class FileIO:
         :param file_path: str: path of the input customer file
         :rtype: object: returns customer_details reads from the file
         """
+
+        if not file_path:
+            raise Exception("Invalid file path for reading the input")
+
         customer_details = []
 
-        with open(file_path, 'r') as reader:
-            for line in reader:
-                customer_details.append(json.loads(line))
+        try:
+            with open(file_path, 'r') as reader:
+                for line in reader:
+                    customer_details.append(json.loads(line))
+        except Exception as e:
+            raise Exception("Error while reading from the input file")
 
         return customer_details
 
@@ -26,6 +33,13 @@ class FileIO:
         :param data: Iterable[str]: List of strings
         :param file_path: str: path of the output file
         :rtype: None
+
         """
-        with open(file_path, 'w') as writer:
-            writer.write('\n'.join(data))
+        if not file_path:
+            raise Exception("Invalid file path for writing the output")
+
+        try:
+            with open(file_path, 'w') as writer:
+                writer.write('\n'.join(data))
+        except Exception as e:
+            raise Exception("Error while writing to the output file")

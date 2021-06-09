@@ -66,11 +66,7 @@ class InvitationService:
         :rtype: None:
         """
 
-        try:
-            FileIO.write(self.output_file_path, nearest_customers)
-        except Exception as e:
-            print("Error in writing to output file - " + self.output_file_path, e)
-            raise e
+        return FileIO.write(self.output_file_path, nearest_customers)
 
     def get_customer_details(self) -> List[CustomerDetails]:
         """
@@ -78,10 +74,5 @@ class InvitationService:
         :rtype: List[CustomerDetails]
         """
 
-        try:
-            customer_details = FileIO.read(self.input_file_path)
-        except Exception as e:
-            print("Error in reading input from the file - " + self.input_file_path, e)
-            raise e
-
+        customer_details = FileIO.read(self.input_file_path)
         return list(map(lambda i: CustomerDetails(**i), customer_details))
