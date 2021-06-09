@@ -9,6 +9,21 @@ from util.file_io import FileIO
 
 class TestInvitationService:
 
+    def test_complete_invitation_service(self):
+        input_file = "resources/customer.txt"
+        output_file = "resources/output.txt"
+
+        invitation_service = InvitationService(input_file, output_file)
+        invitation_service.find_customers_within_radius()
+
+        line_count = 0
+        with open(output_file, "r") as reader:
+            for line in reader:
+                if line != "\n":
+                    line_count += 1
+
+        assert line_count == 16
+
     def test_get_customers_within_radius_with_empty_input(self):
         customer_details = []
         radius_range = 100.0
