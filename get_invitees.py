@@ -17,7 +17,7 @@ parser.add_argument("-o", default="resources/output.txt",
 
 args = parser.parse_args()
 
-if isinstance(args.r, float) \
+if not isinstance(args.r, float) \
         or args.r > 12742 or 0 >= args.r:
     raise ValueError("Invalid value for the radius - " + str(args.r) + " km")
 
