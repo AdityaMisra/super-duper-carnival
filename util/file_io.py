@@ -33,8 +33,8 @@ class FileIO:
         :param data: Iterable[str]: List of strings
         :param file_path: str: path of the output file
         :rtype: None
-
         """
+
         if not file_path:
             raise Exception("Invalid file path for writing the output")
 

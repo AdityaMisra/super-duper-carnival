@@ -14,21 +14,22 @@ class InvitationService:
         :param input_file_path: file path of the customer file
         :param output_file_path: path of the output file
         """
+
         super().__init__()
         self.input_file_path = input_file_path
         self.output_file_path = output_file_path
 
-    def find_customers_within_radius(self, range_radius: float = 100.0) -> None:
+    def find_customers_within_radius(self, radius_range: float = 100.0) -> None:
         """
         This method parses through the input file of customers and writes the details of valid customers in the output file.
-        Valid customers are those whose home location is within the range_radius of the Dublin office location.
-        :param range_radius: float: default value is 100.0 km
+        Valid customers are those whose home location is within the radius_range of the Dublin office location.
+        :param radius_range: float: default value is 100.0 km
         :rtype: None: write the output in the `output_file_path`
         """
 
         customer_details = self.get_customer_details()
 
-        nearest_customers = self._get_customers_within_radius(customer_details, range_radius)
+        nearest_customers = self._get_customers_within_radius(customer_details, radius_range)
 
         # converting user_id into string & joining values of tuple to form a string
         nearest_customers = map(lambda x: ", ".join(map(str, x)), nearest_customers)
@@ -37,10 +38,10 @@ class InvitationService:
 
         return None
 
-    def _get_customers_within_radius(self, customer_details: List[CustomerDetails], range_radius: float) -> list:
+    def _get_customers_within_radius(self, customer_details: List[CustomerDetails], radius_range: float) -> list:
         """
-        Get valid customers whose home location is within the range_radius of the Dublin office location.
-        :type range_radius: float
+        Get valid customers whose home location is within the radius_range of the Dublin office location.
+        :type radius_range: float
         :type customer_details: List[CustomerDetails]
         :rtype: list: valid list of customers
         """
@@ -52,7 +53,7 @@ class InvitationService:
 
             distance = DistanceCalculator.compute_distance(origin, self.destination)
 
-            if distance < range_radius:
+            if distance <= radius_range:
                 nearest_customers.append((customer.user_id, customer.name))
 
         nearest_customers.sort(key=lambda x: x[0])

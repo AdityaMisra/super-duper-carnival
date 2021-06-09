@@ -11,10 +11,10 @@ class TestInvitationService:
 
     def test_get_customers_within_radius_with_empty_input(self):
         customer_details = []
-        range_radius = 100.0
+        radius_range = 100.0
 
         invitationService = InvitationService("resources/customer.txt", "resources/output.txt")
-        assert len(invitationService._get_customers_within_radius(customer_details, range_radius)) == 0
+        assert len(invitationService._get_customers_within_radius(customer_details, radius_range)) == 0
 
     def test_get_customers_within_radius(self):
         customer_details = [CustomerDetails(latitude=51.92893, longitude=-10.27699, name='Alice Cahill', user_id=1),
@@ -29,10 +29,10 @@ class TestInvitationService:
                             CustomerDetails(latitude=53.2451022, longitude=-6.238335, name='Ian Kehoe', user_id=4),
                             CustomerDetails(latitude=53.1302756, longitude=-6.2397222, name='Nora Dempsey', user_id=5)]
 
-        range_radius = 100.0
+        radius_range = 100.0
 
         invitationService = InvitationService("resources/customer.txt", "resources/output.txt")
-        assert len(invitationService._get_customers_within_radius(customer_details, range_radius)) == 4
+        assert len(invitationService._get_customers_within_radius(customer_details, radius_range)) == 4
 
     def test_find_customers_within_radius_with_empty_list(self):
         invitationService = InvitationService("resources/customer.txt", "resources/output.txt")
@@ -40,9 +40,9 @@ class TestInvitationService:
         invitationService._get_customers_within_radius = MagicMock(return_value=[])
         invitationService.write_to_output_file = MagicMock(return_value=None)
 
-        range_radius = 100.0
+        radius_range = 100.0
 
-        assert invitationService.find_customers_within_radius(range_radius) is None
+        assert invitationService.find_customers_within_radius(radius_range) is None
 
     def test_find_customers_within_radius(self):
         customer_details = [CustomerDetails(latitude=52.2559432, longitude=-7.1048927, name='Jack Dempsey', user_id=9),
@@ -54,9 +54,9 @@ class TestInvitationService:
         invitationService._get_customers_within_radius = MagicMock(return_value=[(4, 'Ian Kehoe'), (5, 'Nora Dempsey')])
         invitationService.write_to_output_file = MagicMock(return_value=None)
 
-        range_radius = 100.0
+        radius_range = 100.0
 
-        assert invitationService.find_customers_within_radius(range_radius) is None
+        assert invitationService.find_customers_within_radius(radius_range) is None
 
     def test_write_to_output_file(self):
         FileIO.write = MagicMock(return_value=None)
